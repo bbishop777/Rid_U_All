@@ -1,22 +1,22 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
+//using UnityEngine.UI;
 using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 
 	public float speed;
-	public Text countText;
-	public Text winText;
+//	public Text countText;
+//	public Text winText;
 
 	private Rigidbody rb;
-	private int count;
+//	private int count;
 
 	void Start ()
 	{
 		rb = GetComponent<Rigidbody>();
-		count = 0;
-		SetCountText ();
-		winText.text = "";
+//		count = 0;
+//		SetCountText ();
+//		winText.text = "";
 
 	}
 
@@ -37,25 +37,25 @@ public class PlayerController : MonoBehaviour {
 		{
 			Physics.IgnoreCollision (other.gameObject.transform.GetComponent<Collider> (), GetComponent<Collider> ());
 		}
-		if(other.gameObject.CompareTag("Pick Up"))
-		{
-			other.gameObject.SetActive (false);
-			count = count + 1;
-			SetCountText ();
-		}
+//		if(other.gameObject.CompareTag("Pick Up"))
+//		{
+//			other.gameObject.SetActive (false);
+//			count = count + 1;
+//			SetCountText ();
+//		}
 		if (other.gameObject.CompareTag ("Dynamite")) 
 		{
 			Physics.IgnoreCollision (other.gameObject.transform.GetComponent<Collider> (), GetComponent<Collider> ());
 		}
 	}
 
-	void SetCountText ()
-	{
-		countText.text = "Count: " + count.ToString ();
-		if (count >= 14)
-		{
-			winText.text = "You Win All 72 Virgins!";
-		}
-	}
+//	void SetCountText ()
+//	{
+//		countText.text = "Count: " + count.ToString ();
+//		if (count >= 14)
+//		{
+//			winText.text = "You Win All 72 Virgins!";
+//		}
+//	}
 }
  
