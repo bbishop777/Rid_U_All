@@ -29,9 +29,14 @@ public class PlayerController : MonoBehaviour {
 
 		rb.AddForce (movement * speed);
 	}
+		
 
 	void OnTriggerEnter(Collider other) 
-	{
+	{	
+		if (other.gameObject.CompareTag ("Radius")) 
+		{
+			Physics.IgnoreCollision (other.gameObject.transform.GetComponent<Collider> (), GetComponent<Collider> ());
+		}
 		if(other.gameObject.CompareTag("Pick Up"))
 		{
 			other.gameObject.SetActive (false);
