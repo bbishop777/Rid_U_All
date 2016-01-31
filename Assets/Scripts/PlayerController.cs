@@ -43,6 +43,10 @@ public class PlayerController : MonoBehaviour {
 			count = count + 1;
 			SetCountText ();
 		}
+		if (other.gameObject.CompareTag ("Dynamite")) 
+		{
+			Physics.IgnoreCollision (other.gameObject.transform.GetComponent<Collider> (), GetComponent<Collider> ());
+		}
 	}
 
 	void SetCountText ()
