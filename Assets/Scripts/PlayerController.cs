@@ -3,13 +3,11 @@
 using System.Collections;
 
 public class PlayerController : MonoBehaviour {
-
+	private Rigidbody rb;
 	public float speed;
 //	public Text countText;
 //	public Text winText;
 
-	private Rigidbody rb;
-//	private int count;
 
 	void Start ()
 	{
@@ -37,12 +35,14 @@ public class PlayerController : MonoBehaviour {
 		{
 			Physics.IgnoreCollision (other.gameObject.transform.GetComponent<Collider> (), GetComponent<Collider> ());
 		}
+
 //		if(other.gameObject.CompareTag("Pick Up"))
 //		{
 //			other.gameObject.SetActive (false);
 //			count = count + 1;
 //			SetCountText ();
 //		}
+
 		if (other.gameObject.CompareTag ("Dynamite")) 
 		{
 			Physics.IgnoreCollision (other.gameObject.transform.GetComponent<Collider> (), GetComponent<Collider> ());
