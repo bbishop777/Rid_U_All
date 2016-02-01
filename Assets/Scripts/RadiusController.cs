@@ -7,7 +7,6 @@ public class RadiusController : MonoBehaviour {
 	public Text winText;
 	public GameObject player;
 	private int count;
-	private bool triggerPressed;
 	private float rad = 7.5f;
 
 	private Vector3 offset;
@@ -25,35 +24,42 @@ public class RadiusController : MonoBehaviour {
 	void LateUpdate () 
 	{	
 		transform.position = player.transform.position + offset;
-		if (Input.GetKeyDown(KeyCode.Space))
-		{
-			ExplosionDamage (transform.position, rad);
-//			triggerPressed = true;
-		}
 		if (Input.GetKeyUp(KeyCode.Space))
 		{
-			triggerPressed = false;
+			ExplosionDamage (transform.position, rad);
+			SetCountText();	
 		}
+
+
+//		if (Input.GetKeyUp(KeyCode.N))
+//		{
+//			ExplosionDamage (transform.position, rad);
+		//	//SetCountText;	}
+//		}
 	}
+
+
+		
+			
 
 	void ExplosionDamage(Vector3 center, float radius) {
 		Collider[] hitColliders = Physics.OverlapSphere(center, radius);
 		int i = 0;
-		while (i < hitColliders.Length) {
+		while (i < hitColliders.Length) 
+		{
+			if(hitColliders[i].gameObject.CompareTag("Pick Up"))
+			{
+				count = count + 1;
+			}
 			hitColliders[i].gameObject.SetActive (false);
 			i++;
 		}
+	
 	}
 
 
 	void OnTriggerEnter(Collider other)
 	{
-		if(other.gameObject.CompareTag("Pick Up") && triggerPressed == true)
-		{
-			other.gameObject.SetActive (false);
-			count = count + 1;
-			SetCountText ();
-		}
 		if (other.gameObject.CompareTag ("Player")) 
 		{
 			Physics.IgnoreCollision (other.gameObject.transform.GetComponent<Collider> (), GetComponent<Collider> ());
@@ -72,10 +78,16 @@ public class RadiusController : MonoBehaviour {
 	void SetCountText ()
 	{
 		countText.text = "Count: " + count.ToString ();
-		if (count >= 14)
+		if (count >= 14) 
 		{
-			winText.text = "You Win All 72 Virgins!";
+			//winText.text = "You Win All 72 Virgins!";
+			winText.text = "You got them all!";
 		}
+			if(count < 14)	
+		{
+			winText.text = "NOT A WINNER!";
+		}	
 	}
+
 		
 }
