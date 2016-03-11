@@ -80,7 +80,6 @@ public class RadiusController : MonoBehaviour {
 		countText.text = "Count: " + count.ToString ();
 		if (count >= 14) 
 		{
-			//winText.text = "You Win All 72 Virgins!";
 			winText.text = "You got them all!";
 		}
 			if(count < 14)	
